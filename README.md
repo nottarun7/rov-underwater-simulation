@@ -64,7 +64,7 @@ Key components:
 
 # Repository Structure
 
-
+```
 rov_underwater_sim
 │
 ├── rov_sim
@@ -80,7 +80,7 @@ rov_underwater_sim
 ├── images
 │
 └── README.md
-
+```
 
 ---
 
