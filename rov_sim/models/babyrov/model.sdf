@@ -1,0 +1,284 @@
+<sdf version="1.6">
+<model name="babyrov">
+
+  <static>false</static>
+
+  <link name="base_link">
+
+    <!-- Physics -->
+    <inertial>
+      <mass>8.5</mass>
+      <inertia>
+        <ixx>0.1</ixx>
+        <iyy>0.1</iyy>
+        <izz>0.1</izz>
+      </inertia>
+    </inertial>
+
+    <velocity_decay>
+      <linear>0.4</linear>
+      <angular>0.4</angular>
+    </velocity_decay>
+
+    <buoyancy>
+      <fluid_density>1025</fluid_density>
+      <volume>0.01</volume>
+    </buoyancy>
+
+    <!-- Physics collision -->
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.35 0.35 0.25</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <!-- Camera -->
+    <sensor name="rov_camera" type="camera">
+      <pose>0.45 0 0.12 0 0 0</pose>
+      <always_on>true</always_on>
+      <update_rate>30</update_rate>
+      <visualize>true</visualize>
+
+      <camera>
+        <horizontal_fov>1.396</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>50</far>
+        </clip>
+      </camera>
+
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>/babyrov</namespace>
+        </ros>
+        <camera_name>rov_camera</camera_name>
+        <image_topic_name>image_raw</image_topic_name>
+        <camera_info_topic_name>camera_info</camera_info_topic_name>
+        <frame_name>camera_link</frame_name>
+      </plugin>
+    </sensor>
+    <!-- HULL -->
+    <visual name="hull">
+      <pose>0 0 0 0 1.57 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.07</radius>
+          <length>0.45</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <ambient>1 0.8 0 1</ambient>
+      </material>
+    </visual>
+
+    <!-- FRAME -->
+    <visual name="frame_left">
+      <pose>0 -0.18 -0.05 0 1.57 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.02</radius>
+          <length>0.6</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="frame_right">
+      <pose>0 0.18 -0.05 0 1.57 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.02</radius>
+          <length>0.6</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="frame_front">
+      <pose>0.3 0 -0.05 1.57 0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.02</radius>
+          <length>0.36</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="frame_back">
+      <pose>-0.3 0 -0.05 1.57 0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.02</radius>
+          <length>0.36</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <!-- THRUSTER: REAR LEFT -->
+    <visual name="thruster_rear_left">
+      <pose>-0.35 -0.12 0 0 1.57 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.04</radius>
+          <length>0.08</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="prop_rear_left_1">
+      <pose>-0.35 -0.12 0 0 1.57 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.12 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <visual name="prop_rear_left_2">
+      <pose>-0.35 -0.12 0 0 1.57 1.57</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.12 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <!-- THRUSTER: REAR RIGHT -->
+    <visual name="thruster_rear_right">
+      <pose>-0.35 0.12 0 0 1.57 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.04</radius>
+          <length>0.08</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="prop_rear_right_1">
+      <pose>-0.35 0.12 0 0 1.57 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.12 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <visual name="prop_rear_right_2">
+      <pose>-0.35 0.12 0 0 1.57 1.57</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.12 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <!-- THRUSTER: REAR CENTER -->
+    <visual name="thruster_rear_center">
+      <pose>-0.35 0 0 0 1.57 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.04</radius>
+          <length>0.08</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="prop_rear_center_1">
+      <pose>-0.35 0 0 0 1.57 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.12 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <visual name="prop_rear_center_2">
+      <pose>-0.35 0 0 0 1.57 1.57</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.12 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <!-- TOP THRUSTERS -->
+    <visual name="thruster_top_left">
+      <pose>-0.1 -0.15 0.18 1.57 0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.035</radius>
+          <length>0.08</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="prop_top_left">
+      <pose>-0.1 -0.15 0.18 1.57 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.1 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <visual name="thruster_top_right">
+      <pose>-0.1 0.15 0.18 1.57 0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.035</radius>
+          <length>0.08</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="prop_top_right">
+      <pose>-0.1 0.15 0.18 1.57 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.1 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+    <!-- SIDE THRUSTER -->
+    <visual name="thruster_side">
+      <pose>0.1 0.2 0 0 0 1.57</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.035</radius>
+          <length>0.08</length>
+        </cylinder>
+      </geometry>
+    </visual>
+
+    <visual name="prop_side">
+      <pose>0.1 0.2 0 0 0 1.57</pose>
+      <geometry>
+        <box>
+          <size>0.01 0.1 0.02</size>
+        </box>
+      </geometry>
+    </visual>
+
+  </link>
+
+  <!-- Motion -->
+  <plugin name="planar_move" filename="libgazebo_ros_planar_move.so">
+    <ros>
+      <namespace>/babyrov</namespace>
+    </ros>
+
+    <body_name>base_link</body_name>
+    <cmd_vel_topic>cmd_vel</cmd_vel_topic>
+
+    <max_linear_velocity>2.0</max_linear_velocity>
+    <max_angular_velocity>1.5</max_angular_velocity>
+  </plugin>
+
+</model>
+</sdf>
