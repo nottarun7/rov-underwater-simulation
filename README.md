@@ -94,21 +94,21 @@ rov_underwater_sim
 
 Install dependencies:
 
-
+```
 sudo apt install ros-humble-gazebo-ros-pkgs
 sudo apt install ros-humble-gazebo-plugins
 sudo apt install ros-humble-rqt-image-view
-
+```
 
 ---
 
 # Running the Simulation
 
-
+```
 cd ~/rov_ws
 source install/setup.bash
 ros2 launch rov_sim rov_demo.launch.py
-
+```
 
 This launches:
 
@@ -120,15 +120,15 @@ This launches:
 
 # Viewing Camera Feed
 
-
+```
 ros2 run rqt_image_view rqt_image_view
-
+```
 
 Select:
 
-
+```
 /babyrov/rov_camera/image_raw
-
+```
 
 ---
 
